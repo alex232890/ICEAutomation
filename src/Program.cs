@@ -13,13 +13,20 @@ namespace ImageComposeEditorAutomation
     {
         static void Main(string[] args)
         {
-            var composeApp = new ComposeAppService();
             if (args[0] == "compose") {
+                var composeApp = new ComposeAppService();
+                Console.WriteLine("composing...");
+                composeApp.Compose(args.Skip(1).ToArray(), m => Console.WriteLine(m), i => drawTextProgressBar(1, 100));
+            }
+            else if(args[0] == "advanced-compose")
+            {
+                var composeApp = new AdvancedComposeAppService();
                 Console.WriteLine("composing...");
                 composeApp.Compose(args.Skip(1).ToArray(), m => Console.WriteLine(m), i => drawTextProgressBar(1, 100));
             }
             else if(args[0] == "process") 
-            {                
+            {
+                var composeApp = new ComposeAppService();
                 Console.WriteLine("process...");
                 var num = args.Length > 1 ? int.Parse(args[1]) : 3;
                 var extension = args.Length > 2 ? args[2] : "*.JPG";

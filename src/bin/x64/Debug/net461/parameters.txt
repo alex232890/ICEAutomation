@@ -1,0 +1,17 @@
+horizontal-overlap=25 
+vertical-overlap=25
+is-serpentine=False
+start-bottom-left-corner=True
+start-bottom-right-corner=False
+start-upper-left-corner=False
+start-upper-right-corner=False
+move-right=True
+move-left=False
+move-down=False
+move-up=False
+less-than-360-deg-angular-range=True
+360-horizontal-angular-range=False
+360-vertical-angular-range=False
+search-radius=1
+ice-app-path=C:\Program Files\Microsoft Research\Image Composite Editor\ICE.exe
+major-axis-image-count=6

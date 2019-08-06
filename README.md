@@ -7,6 +7,7 @@ A command line application to bach process image stitching using the marvellous 
 1) recommended: copy the batch file ICEAutomation.bat to c:\Windows or some folder in system Path.
 2) open a command line and move to the folder where your images are
 3) execute 
+- "ICEAutomation advanced-compose [file1] [file2] [file3...] to stitch those files in structured panorama mode (parameter file in corresponding dist folder)
 - "ICEAutomation compose [file1] [file2] [file3...]" to stitch those files
 - "ICEAutomation process" to process all *.JPG files in current folder in groups of 3
 - "ICEAutomation process [num]" to process all *.JPG files in current folder in groups of [num]

@@ -11,6 +11,7 @@ using FlaUI.Core.AutomationElements;
 using FlaUI.Core.AutomationElements.Infrastructure;
 using FlaUI.Core.Definitions;
 using FlaUI.UIA3;
+using System.Windows.Threading;
 
 
 namespace ImageComposeEditorAutomation
@@ -54,41 +55,41 @@ namespace ImageComposeEditorAutomation
             var cornerHelpText = startBottomLeftHelpText;
             var directionHelpText = moveRightHelpText;
 
-            if (Convert.ToBoolean(parameters["start-upper-left-corner"]) == true)
+            if (parameters["start-upper-left-corner"] == "1")
             {
                 cornerHelpText = startTopLeftHelpText;
 
-                if (Convert.ToBoolean(parameters["move-right"]) == true)
+                if (parameters["move-right"] == "1")
                 {
                     directionHelpText = moveRightHelpText;
                 }
-                else if (Convert.ToBoolean(parameters["move-down"]) == true)
+                else if (parameters["move-down"] == "1")
                 {
                     directionHelpText = moveDownHelpText;
                 }
             }
-            else if (Convert.ToBoolean(parameters["start-upper-right-corner"]) == true)
+            else if (parameters["start-upper-right-corner"] == "1")
             {
                 cornerHelpText = startTopRightHelpText;
 
-                if (Convert.ToBoolean(parameters["move-left"]) == true)
+                if (parameters["move-left"] == "1")
                 {
                     directionHelpText = moveLeftHelpText;
                 }
-                else if (Convert.ToBoolean(parameters["move-down"]) == true)
+                else if (parameters["move-down"] == "1")
                 {
                     directionHelpText = moveDownHelpText;
                 }
             }
-            else if (Convert.ToBoolean(parameters["start-bottom-right-corner"]) == true)
+            else if (parameters["start-bottom-right-corner"] == "1")
             {
                 cornerHelpText = startBottomRightHelpText;
 
-                if (Convert.ToBoolean(parameters["move-left"]) == true)
+                if (parameters["move-left"] == "1")
                 {
                     directionHelpText = moveLeftHelpText;
                 }
-                else if (Convert.ToBoolean(parameters["move-up"]) == true)
+                else if (parameters["move-up"] == "1")
                 {
                     directionHelpText = moveUpHelpText;
                 }
@@ -97,11 +98,11 @@ namespace ImageComposeEditorAutomation
             {
                 cornerHelpText = startBottomLeftHelpText;
 
-                if (Convert.ToBoolean(parameters["move-right"]) == true)
+                if (parameters["move-right"] == "1")
                 {
                     directionHelpText = moveRightHelpText;
                 }
-                else if (Convert.ToBoolean(parameters["move-up"]))
+                else if (parameters["move-up"] == "1")
                 {
                     directionHelpText = moveUpHelpText;
                 }
@@ -112,9 +113,9 @@ namespace ImageComposeEditorAutomation
 
             var angularRangeBtnLabel = ConfigurationManager.AppSettings["Less-than-360-angular-range-btn-label"];
 
-            if (Convert.ToBoolean(parameters["360-horizontal-angular-range"]) == true)
+            if (parameters["360-horizontal-angular-range"] == "1")
                 angularRangeBtnLabel = ConfigurationManager.AppSettings["360-horizontal-btn-label"];
-            else if (Convert.ToBoolean(parameters["360-vertical-angular-range"]) == true)
+            else if (parameters["360-vertical-angular-range"] == "1")
                 angularRangeBtnLabel = ConfigurationManager.AppSettings["360-vertical-btn-label"];
 
             var horizontalOverlapTextBox = ConfigurationManager.AppSettings["Horizontal-overlap-text-box"];
@@ -224,7 +225,7 @@ namespace ImageComposeEditorAutomation
                     do
                     {
                         string imgOrderBtnLabel = null;
-                        if (Convert.ToBoolean(parameters["is-serpentine"]) == true)
+                        if (parameters["is-serpentine"] == "1")
                         {
                             imgOrderBtnLabel = serpentineBtnLabel;
                         }
@@ -372,16 +373,24 @@ namespace ImageComposeEditorAutomation
                 try
                 {
                     var saveDlg = window.ModalWindows.FirstOrDefault(w => w.Name == exportPanoramaBtnLabel);
-
+                    Thread.Sleep(100);
                     var pane40965 = saveDlg.FindFirstDescendant(cf => cf.ByAutomationId("40965"));
+                    Thread.Sleep(100);
                     var pane41477 = pane40965.FindFirstDescendant(cf => cf.ByAutomationId("41477"));
+                    Thread.Sleep(100);
                     var progressBar = pane41477.FindFirstDescendant(cf => cf.ByClassName("msctls_progress32"));
+                    Thread.Sleep(100);
                     var breadcrumbParent = progressBar.FindFirstDescendant(cf => cf.ByClassName("Breadcrumb Parent"));
+                    Thread.Sleep(100);
                     var toolbar = breadcrumbParent.FindFirstDescendant(cf => cf.ByClassName("ToolbarWindow32"));
+                    Thread.Sleep(100);
 
                     toolbar.Click();
+                    Thread.Sleep(2000);
                     FlaUI.Core.Input.Keyboard.TypeSimultaneously(FlaUI.Core.WindowsAPI.VirtualKeyShort.CONTROL, FlaUI.Core.WindowsAPI.VirtualKeyShort.KEY_V);
+                    Thread.Sleep(100);
                     FlaUI.Core.Input.Keyboard.Type(FlaUI.Core.WindowsAPI.VirtualKeyShort.ENTER);
+                    Thread.Sleep(100);
 
                     var buttonSave = saveDlg.FindFirstDescendant(cf => cf.ByText(saveBtnLabel)).AsButton();
                     buttonSave?.DoubleClick();
